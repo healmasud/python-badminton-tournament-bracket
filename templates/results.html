@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Schedule</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Match Results</h1>
+    <form method="POST" action="/results">
+        <div class="tournament-bracket">
+            {% for match in matches %}
+                <div>
+                    <p><strong>Match {{ match[0] }}: {{ match[1] }} vs {{ match[2] }}</strong></p>
+                    <label>{{ match[1] }} Score:</label>
+                    <input type="number" name="score_{{ match[0] }}_1" required>
+                    <label>{{ match[2] }} Score:</label>
+                    <input type="number" name="score_{{ match[0] }}_2" required>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit">Submit Results</button>
+    </form>
+</body>
+</html>

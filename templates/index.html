@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badminton Tournament</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Badminton Tournament</h1>
+    <form method="POST" action="/teams">
+        <label for="num_teams">Enter the number of teams:</label>
+        <input type="number" id="num_teams" min="2" max="20" required>
+        <div id="team_inputs"></div>
+        <button type="submit">Submit Teams</button>
+    </form>
+
+    <form method="POST" action="/clear">
+        <button class="clear-button" type="submit">Clear Tournament Data</button>
+    </form>
+
+    <script>
+        const teamInputs = document.getElementById('team_inputs');
+        const numTeams = document.getElementById('num_teams');
+        numTeams.addEventListener('input', function() {
+            teamInputs.innerHTML = '';
+            for (let i = 0; i < numTeams.value; i++) {
+                teamInputs.innerHTML += `<label>Team ${i + 1} Name:</label><input type="text" name="team" required>`;
+            }
+        });
+    </script>
+</body>
+</html>
